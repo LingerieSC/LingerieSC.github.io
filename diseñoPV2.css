@@ -34,3 +34,26 @@
 .social-link i {
     font-size: 3.2rem;
 }
+/* En tus media queries */
+@media (max-width: 768px) {
+    .producto-card img {
+        height: 250px; /* Altura fija para móviles */
+    }
+    
+    .hero-slide {
+        background-size: cover;
+        background-position: center;
+    }
+}
+/* En tus media queries */
+@media (max-width: 768px) {
+    .producto-card img {
+        height: 250px; /* Altura fija para móviles */
+    }
+    
+    .hero-slide {
+        background-size: cover;
+        background-position: center;
+    }
+}
+
