@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lingerie SC - Lencería y Belleza</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="diseñoPV2.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+<!-- Para compatibilidad con todos navegadores: -->
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <style>
+        /* === ESTILOS GENERALES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+        body {
+            background-color: #fff5f7;
+            color: #333;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* === HEADER COMPLETO === */
+        header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 30px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        nav ul li a:hover {
+            color: #ff6b88;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #ff6b88;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        .icons {
+            display: flex;
+            align-items: center;
+        }
+        .icons a {
+            color: #fff;
+            margin-left: 20px;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        .icons a:hover {
+            color: #ff6b88;
+            transform: translateY(-3px);
+        }
+
+        /* === BUSCADOR === */
+        .search-container {
+            position: relative;
+            display: none;
+            margin-left: 15px;
+        }
+        .search-input {
+            padding: 8px 15px;
+            border: 2px solid #ff6b88;
+            border-radius: 30px;
+            width: 180px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .search-input:focus {
+            width: 220px;
+        }
+
+        /* === CARRUSEL DE COLECCIONES === */
+        .hero-slider {
+            width: 100%;
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .slider-container {
+            display: flex;
+            width: 500%; /* Aumentado para 5 slides */
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .hero-slide {
+            flex: 1 0 20%; /* Ajustado para 5 slides */
+            position: relative;
+        }
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .hero-slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+        }
+        .hero-slide h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .hero-slide p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            background: #ff6b88;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 136, 0.4);
+        }
+        .btn:hover {
+            background: #ff4757;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 136, 0.6);
+        }
+
+        /* Imágenes de fondo para cada slide */
+        #slide-conjuntos {
+            background: url('SInterior.png') no-repeat center center/cover;
+        }
+        #slide-sostenes {
+            background: url('SLenceria.png') no-repeat center center/cover;
+        }
+        #slide-pijamas {
+            background: url('Serotismo.png') no-repeat center center/cover;
+        }
+        #slide-maquillaje {
+            background: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+        }
+        #slide-perfumeria {
+            background: url('https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+        }
+
+        /* Controles del slider */
+        .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .slider-dot.active {
+            background: #ff6b88;
+            transform: scale(1.2);
+        }
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        .slider-arrow:hover {
+            background: rgba(255, 107, 136, 0.7);
+        }
+        .slider-arrow.left {
+            left: 20px;
+        }
+        .slider-arrow.right {
+            right: 20px;
+        }
+
+        /* === CORAZONES FLOTANTES === */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            color: rgba(255, 107, 136, 0.5);
+            animation: float 10s linear infinite;
+            font-size: 1.5rem;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* === SECCIÓN COLECCIONES === */
+        .collections {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #ff6b88;
+            display: inline-block;
+            position: relative;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 3px;
+            background: linear-gradient(to right, #ff6b88, #ffc3a0);
+            bottom: -10px;
+            left: 15%;
+        }
+
+        /* Filtros */
+        .categorias {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .btn-categoria {
+            background: #fff;
+            border: 2px solid #ff6b88;
+            color: #ff6b88;
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .btn-categoria.active, .btn-categoria:hover {
+            background: #ff6b88;
+            color: #fff;
+        }
+
+        /* Productos */
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        .producto-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        .producto-card:hover {
+            transform: translateY(-10px);
+        }
+        .producto-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .producto-card:hover img {
+            transform: scale(1.05);
+        }
+        .producto-info {
+            padding: 20px;
+            text-align: center;
+        }
+        .producto-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ff6b88;
+            margin: 15px 0;
+        }
+
+        /* === SECCIÓN CONTACTO === */
+        .contact-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            color: white;
+        }
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .contact-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .contact-card i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        /* === BOTÓN DE WHATSAPP === */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Completo -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Lingerie.png" alt="Lingerie SC" class="logo-img">
+                  <h1 class="titulo-p">Lingerie SC</h1>
+                  <head><link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet"></head>
+                <style>
+                    .titulo-p {
+                        font-size: 2.5rem;
+                        font-family:'Dancing script', cursive;
+                        font-style: dreamer outloud script pro;
+                    }
+                    .logo{
+                        gap: 15px;
+                    }
+                    .logo-img {
+                        height: 65px;
+                        width: auto;
+                        gap: 20px;
+                    }
+                </style>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#colecciones">Colecciones</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+                <div class="icons">
+                    <a href="#" id="search-toggle"><i class="fas fa-search"></i></a>
+                    <div class="search-container" id="search-container">
+                        <input type="text" class="search-input" id="search-input" placeholder="Buscar productos...">
+                    </div>
+                    <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Carrusel de Colecciones -->
+    <div class="hero-slider">
+        <div class="slider-container" id="slider">
+            <!-- Slide Interior -->
+            <div class="hero-slide" id="slide-conjuntos">
+                <div class="floating-hearts">
+                    <div class="heart" style="left: 10%; animation-delay: 0s;"><i class="fas fa-heart"></i></div>
+                    <div class="heart" style="left: 20%; animation-delay: 2s;"><i class="fas fa-heart"></i></div>
+                    <div class="heart" style="left: 30%; animation-delay: 4s;"><i class="fas fa-heart"></i></div>
+                </div>
+                <div class="hero-slide-content">
+                    <h1>Ropa interior</h1>
+                    <p>Diseño comodo esencial y versatil</p>
+                    <a href="#colecciones" class="btn" onclick="filtrarPorCategoria('conjuntos')">Ver Colección</a>
+                </div>
+            </div>
+            
+            <!-- Slide Lenceria -->
+            <div class="hero-slide" id="slide-sostenes">
+                <div class="floating-hearts">
+                    <div class="heart" style="left: 70%; animation-delay: 1s;"><i class="fas fa-heart"></i></div>
+                    <div class="heart" style="left: 50%; animation-delay: 3s;"><i class="fas fa-heart"></i></div>
+                    <div class="heart" style="left: 80%; animation-delay: 5s;"><i class="fas fa-heart"></i></div>
+                </div>
+                <div class="hero-slide-content">
+                    <h1>Lenceria</h1>
+                    <p>Diseños que combinan soporte y sensualidad</p>
+                    <a href="#colecciones" class="btn" onclick="filtrarPorCategoria('sostenes')">Ver Colección</a>
+                </div>
+            </div>
+            
+            <!-- Slide sex shop -->
+            <div class="hero-slide" id="slide-pijamas">
+                <div class="floating-hearts">
+                    <div class="heart" style="left: 40%; animation-delay: 0.5s;"><i class="fas fa-heart"></i></div>
+                    <div class="heart" style="left: 60%; animation-delay: 2.5s;"><i class="fas fa-heart"></i></div>
+                    <div class="heart" style="left: 30%; animation-delay: 4.5s;"><i class="fas fa-heart"></i></div>
+                </div>
+                <div class="hero-slide-content">
+                    <h1>Erotismo</h1>
+                    <p>Explora tu lado más audaz con piezas diseñadas para el placer y la experimentación</p>
+                    <a href="#colecciones" class="btn" onclick="filtrarPorCategoria('pijamas')">Ver Colección</a>
+                </div>
+            </div>
+            
+            <!-- Slide Maquillaje (NUEVO) -->
+            <div class="hero-slide" id="slide-maquillaje">
+                <div class="floating-hearts">
+                    <div class="heart" style="left: 25%; animation-delay: 0.8s;"><i class="fas fa-heart"></i></div>
+                    <div class="heart" style="left: 65%; animation-delay: 3.2s;"><i class="fas fa-heart"></i></div>
+                </div>
+                <div class="hero-slide-content">
+                    <h1>Productos de belleza</h1>
+                    <p>Productos profesionales para realzar tu belleza</p>
+                    <a href="#colecciones" class="btn" onclick="filtrarPorCategoria('maquillaje')">Ver Colección</a>
+                </div>
+            </div>
+            
+            <!-- Slide Perfumería (NUEVO) -->
+            <div class="hero-slide" id="slide-perfumeria">
+                <div class="floating-hearts">
+                    <div class="heart" style="left: 15%; animation-delay: 1.2s;"><i class="fas fa-heart"></i></div>
+                    <div class="heart" style="left: 75%; animation-delay: 2.8s;"><i class="fas fa-heart"></i></div>
+                </div>
+                <div class="hero-slide-content">
+                    <h1>Perfumería</h1>
+                    <p>Fragancias únicas que definen tu estilo</p>
+                    <a href="#colecciones" class="btn" onclick="filtrarPorCategoria('perfumeria')">Ver Colección</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Controles del slider -->
+        <div class="slider-arrow left" onclick="moveSlide(-1)">❮</div>
+        <div class="slider-arrow right" onclick="moveSlide(1)">❯</div>
+        <div class="slider-controls">
+            <div class="slider-dot active" onclick="goToSlide(0)"></div>
+            <div class="slider-dot" onclick="goToSlide(1)"></div>
+            <div class="slider-dot" onclick="goToSlide(2)"></div>
+            <div class="slider-dot" onclick="goToSlide(3)"></div>
+            <div class="slider-dot" onclick="goToSlide(4)"></div>
+        </div>
+    </div>
+
+    <!-- Sección Colecciones con Filtros -->
+    <section class="collections" id="colecciones">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestras Colecciones</h2>
+            </div>
+            
+            <!-- Filtros (con nuevas categorías) -->
+            <div class="categorias">
+                <button class="btn-categoria active" data-categoria="todos">Todos</button>
+                <button class="btn-categoria" data-categoria="conjuntos">Ropa interior</button>
+                <button class="btn-categoria" data-categoria="sostenes">Lecenria</button>
+                <button class="btn-categoria" data-categoria="pijamas">Erotismo</button>
+                <button class="btn-categoria" data-categoria="maquillaje">Belleza</button>
+                <button class="btn-categoria" data-categoria="perfumeria">Perfumería</button>
+            </div>
+            
+            <!-- Productos -->
+            <div class="productos-grid" id="productos-grid"></div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-container">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Dirección</h3>
+                    <p>Calle #a -aa sur</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Teléfono</h3>
+                    <p>+57 324 616 4469</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@lingerieSC.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Sección Redes Sociales -->
+<section class="redes-sociales">
+    <div class="container">
+        <h2 class="section-title">Síguenos</h2>
+        <div class="social-icons">
+            <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+                <span>@_sc_lingerie</span>
+            </a>
+            <a href="#" class="social-link" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-tiktok"></i>
+                <span>@lingere.sc</span>
+            </a>
+        </div>
+    </div>
+</section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Lingerie SC. Todos los derechos reservados.</p>
+        </div>
+
+    </footer>
+
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/573246164469?text=Hola,%20me%20interesa%20información%20sobre%20sus%20productos" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // ===== SLIDER =====
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        const slider = document.getElementById('slider');
+        
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 20}%)`; // Ajustado para 5 slides
+            
+            // Actualizar dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            updateSlider();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+        
+        // Auto-avance cada 5 segundos
+        setInterval(() => moveSlide(1), 7000);
+        
+        // ===== FILTROS DE PRODUCTOS =====
+        const productos = [
+            
+
+        //Producto #1//
+            {
+                id: 001, //Interior
+                nombre: "Juego de ropa interior para niña",
+                precio: 12000,
+                categoria: "conjuntos",
+                imagen: "Interior/I1.jpeg",
+                destacado: true
+            },
+            {
+                id: 101, //Lenceria
+                nombre: "Sujetador invisible",
+                precio: 20000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L1.jpeg",
+                destacado: true
+            },
+             {
+                id: 4102, //Perfumeria
+                nombre: "Versace eros flame",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P102.png"
+            },
+            {
+                id: 201,//Erotismo
+                nombre: "NITROX: Alimento para obtener mayor vigor en momentos de placer ",
+                precio: 12000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E1.jpeg",
+                destacado: true
+            },
+            {
+                id: 301, //Maquillaje
+                nombre: "Pinza para cejas",
+                precio: 2000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M1.jpeg"
+            },
+               {
+                id: 401, //Perfumeria
+                nombre: "Calvin Klein One",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P1.png"
+            },
+
+            //Producto #2//
+            {
+                id: 002, //Interior
+                nombre: "Top para niña",
+                precio: 10000,
+                categoria: "conjuntos",
+                imagen: "Interior/I2.jpeg",
+                destacado: true
+            },
+            {
+                id: 102, //Lenceria 
+                nombre: "Almohadilla de silicona para pezones",
+                precio: 8000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L2.jpeg"
+            },
+             {
+                id: 4101, //Perfumeria
+                nombre: "Versace eros",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P101.png"
+            },
+            {
+                id: 202,//Erotismo
+                nombre: "Kipitos para sexo oral $15000 - $10000",
+                precio: 15000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E2.jpeg",
+                destacado: true
+            },
+            {
+                id: 302, //Maquillaje
+                nombre: "Polvo de hadas",
+                precio: 10000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M2.jpeg"
+            },
+              {
+                id: 402, //Perfumeria
+                nombre: "Calvin Klein Eternity",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P2.png"
+            },
+
+            //Producto #3//
+            {
+                id: 003, //Interior
+                nombre: "Top para niña",
+                precio: 12000,
+                categoria: "conjuntos",
+                imagen: "Interior/I3.jpeg",
+                destacado: true
+            },
+            {
+                id: 103, //Lenceria 
+                nombre: "Medias de fantasia",
+                precio: 10000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L3.jpeg"
+            },
+             {
+                id: 4100, //Perfumeria
+                nombre: "Montblanc starwalker",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P100.png"
+            },
+             {
+                id: 203,//Erotismo
+                nombre: "Retardante masculino",
+                precio: 10000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E3.jpeg",
+                destacado: true
+            },
+            {
+                id: 303, //Maquillaje
+                nombre: "Crema corporal",
+                precio: 10000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M3.jpeg"
+            },
+              {
+                id: 403, //Perfumeria
+                nombre: "Carolina Herrera 212 NYC",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P3.png"
+            },
+
+            //Producto #4//
+            {
+                id: 004, //Interior
+                nombre: "Juego de ropa interior femenina",
+                precio: 22000,
+                categoria: "conjuntos",
+                imagen: "Interior/I4.jpeg",
+                destacado: true
+            },
+             {
+                id: 104, //Lenceria 
+                nombre: "Enterizo sexy",
+                precio: 20000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L4.jpeg"
+            },
+            {
+                id: 499, //Perfumeria
+                nombre: "Montblanc legend spirit",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P99.png"
+            },
+             {
+                id: 204,//Erotismo
+                nombre: "Gel lubricante",
+                precio: 15000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E4.jpeg",
+                destacado: true
+            },
+            {
+                id: 304, //Maquillaje
+                nombre: "Pestañas $8000 - $9000",
+                precio: 9000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M4.jpeg"
+            },
+              {
+                id: 404, //Perfumeria
+                nombre: "Carolina Herrera 212 aqua",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P4.png"
+            },
+
+            //Producto #5//
+             {
+                id: 005, //Interior
+                nombre: "Juego de ropa interior femenina",
+                precio: 22000,
+                categoria: "conjuntos",
+                imagen: "Interior/I5.jpeg",
+                destacado: true
+            },
+            {
+                id: 105, //Lenceria 
+                nombre: "Conjunto de lenceria",
+                precio: 48000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L5.jpeg"
+            },
+              {
+                id: 498, //Perfumeria
+                nombre: "Odyssey miyake leau dissey pour homme",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P98.png"
+            },
+             {
+                id: 205,//Erotismo
+                nombre: "Aceite masajeador",
+                precio: 15000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E5.jpeg",
+                destacado: true
+            },
+            {
+                id: 305, //Maquillaje
+                nombre: "Set de 3 depiladores",
+                precio: 9000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M5.jpeg"
+            },
+              {
+                id: 405, //Perfumeria
+                nombre: "Carolina Herrera 212 vip red",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P5.png"
+            },
+
+            //Producto #6//
+             {
+                id: 006, //Interior
+                nombre: "Juego de ropa interior femenina",
+                precio: 25000,
+                categoria: "conjuntos",
+                imagen: "Interior/I6.jpeg",
+                destacado: true
+            },
+            {
+                id: 106, //Lenceria 
+                nombre: "Conjunto de lenceria",
+                precio: 48000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L6.jpeg"
+            },
+              {
+                id: 497, //Perfumeria
+                nombre: "Antonio Banderas blue seduction",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P97.png"
+            },
+             {
+                id: 206,//Erotismo
+                nombre: "Lubricante",
+                precio: 22000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E6.jpeg",
+                destacado: true
+            },
+            {
+                id: 306, //Maquillaje
+                nombre: "Encrespador de pestañas $3000 - $7000",
+                precio: 7000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M6.jpeg"
+            },
+              {
+                id: 406, //Perfumeria
+                nombre: "Carolina Herrera CH men",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P6.png"
+            },
+
+            //Producto #7//
+                  {
+                id: 007, //Interior
+                nombre: "Juego de ropa interior femenina",
+                precio: 25000,
+                categoria: "conjuntos",
+                imagen: "Interior/I7.jpeg",
+                destacado: true
+            },
+            {
+                id: 107, //Lenceria 
+                nombre: "Conjunto de lenceria",
+                precio: 48000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L7.jpeg"
+            },
+              {
+                id: 496, //Perfumeria
+                nombre: "Jean pascal",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P96.png"
+            },
+             {
+                id: 207,//Erotismo
+                nombre: "Potencializador masculino en pasta",
+                precio: 10000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E7.jpeg",
+                destacado: true
+            },
+            {
+                id: 307, //Maquillaje
+                nombre: "Pestañina",
+                precio: 6500,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M7.jpeg"
+            },
+              {
+                id: 407, //Perfumeria
+                nombre: "Carolina Herrera vip black",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P7.png"
+            },
+
+            //Producto #8//
+                  {
+                id: 008, //Interior
+                nombre: "Juego de ropa interior femenina",
+                precio: 25000,
+                categoria: "conjuntos",
+                imagen: "Interior/I8.jpeg",
+                destacado: true
+            },
+            {
+                id: 108, //Lenceria 
+                nombre: "Conjunto de lenceria",
+                precio: 48000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L8.jpeg"
+            },
+             {
+                id: 495, //Perfumeria
+                nombre: "Dolce & Gabanna king",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P95.png"
+            },
+             {
+                id: 208,//Erotismo
+                nombre: "Anillo vibrador para ella",
+                precio: 15000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E8.jpeg",
+                destacado: true
+            },
+            {
+                id: 308, //Maquillaje
+                nombre: "Lipgloss",
+                precio: 5000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M8.jpeg"
+            },
+              {
+                id: 408, //Perfumeria
+                nombre: "Carolina Herrera 212 heroes",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P8.png"
+            },
+
+            //Producto #9//
+                   {
+                id: 009, //Interior
+                nombre: "Brasier",
+                precio: 18000,
+                categoria: "conjuntos",
+                imagen: "Interior/I9.jpeg",
+                destacado: true
+            },
+            {
+                id: 109, //Lenceria 
+                nombre: "Enterizo sexy",
+                precio: 20000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L9.jpeg"
+            },
+             {
+                id: 494, //Perfumeria
+                nombre: "Nautica voyage",
+                precio: 85000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P94.png"
+            },
+             {
+                id: 209,//Erotismo
+                nombre: "Anillo vibrador para el y ella",
+                precio: 15000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E9.jpeg",
+                destacado: true
+            },
+            {
+                id: 309, //Maquillaje
+                nombre: "Lipgloss tinta",
+                precio: 5000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M9.jpeg"
+            },
+              {
+                id: 409, //Perfumeria
+                nombre: "Carolina Herrera sexy men",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P9.png"
+            },
+
+            //Producto #10//
+                   {
+                id: 010, //Interior
+                nombre: "Brasier",
+                precio: 18000,
+                categoria: "conjuntos",
+                imagen: "Interior/I10.jpeg",
+                destacado: true
+            },
+            {
+                id: 110, //Lenceria 
+                nombre: "Medias de malla",
+                precio: 10000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L10.jpeg"
+            },
+             {
+                id: 493, //Perfumeria
+                nombre: "Victorinox swiss army classic",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P93.png"
+            },
+             {
+                id: 210,//Erotismo
+                nombre: "Aceite para sexo oral con sabores",
+                precio: 15000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E10.jpeg",
+                destacado: true
+            },
+            {
+                id: 310, //Maquillaje
+                nombre: "Corrector 6500 - 7500",
+                precio: 7500,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M10.jpeg"
+            },
+              {
+                id: 410, //Perfumeria
+                nombre: "Carolina Herrera 212 vip",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P10.png"
+            },
+
+            //Producto #11//
+                   {
+                id: 011, //Interior
+                nombre: "Brasier",
+                precio: 18000,
+                categoria: "conjuntos",
+                imagen: "Interior/I11.jpeg",
+                destacado: true
+            },
+            {
+                id: 111, //Lenceria 
+                nombre: "Conjunto de lenceria",
+                precio: 20000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L11.jpeg"
+            },
+            {
+                id: 492, //Perfumeria
+                nombre: "Paco Rabanne 1 millon royal",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P92.png"
+            },
+             {
+                id: 211,//Erotismo
+                nombre: "Lubricante anal",
+                precio: 25000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E11.jpeg",
+                destacado: true
+            },
+            {
+                id: 311, //Maquillaje
+                nombre: "Lipgloss matte",
+                precio: 7000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M11.jpeg"
+            },
+              {
+                id: 411, //Perfumeria
+                nombre: "Paco Rabanne Invictus Legend",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P11.png"
+            },
+
+            //Producto #12//
+            {
+                id: 012, //Interior
+                nombre: "Brasier",
+                precio: 18000,
+                categoria: "conjuntos",
+                imagen: "Interior/I12.jpeg",
+                destacado: true
+            },
+            {
+                id: 112, //Lenceria 
+                nombre: "Medias de fantasia",
+                precio: 10000,
+                categoria: "sostenes",
+                imagen: "Lenceria/L12.jpeg"
+            },
+            {
+                id: 491, //Perfumeria
+                nombre: "Paco Rabanne 1 millon prive",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P91.png"
+            },
+             {
+                id: 212,//Erotismo
+                nombre: "Potencializador femenino",
+                precio: 10000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E12.jpeg",
+                destacado: true
+            },
+            {
+                id: 312, //Maquillaje
+                nombre: "Paleta de sombras",
+                precio: 13000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M12.jpeg"
+            },
+              {
+                id: 412, //Perfumeria
+                nombre: "Paco Rabanne Invictus Victory",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P12.png"
+            },
+
+            //Producto #13//
+            {
+                id: 013, //Interior
+                nombre: "Brasier",
+                precio: 20000,
+                categoria: "conjuntos",
+                imagen: "Interior/I13.jpeg",
+                destacado: true
+            },
+            {
+                id: 413, //Perfumeria
+                nombre: "Paco Rabanne 1 millon elixir",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P13.png"
+            },
+            {
+                id: 213,//Erotismo
+                nombre: "Chicle potencializador femenino",
+                precio: 12000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E13.jpeg",
+                destacado: true
+            },
+            {
+                id: 313, //Maquillaje
+                nombre: "Gel para cejas $9000 - $10000",
+                precio: 10000,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M13.jpeg"
+            },
+            {
+                id: 490, //Perfumeria
+                nombre: "Paco Rabanne 1 millon lucky",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P90.png"
+            },
+          
+            //Producto #14//
+            {
+                id: 014, //Interior
+                nombre: "Brasier",
+                precio: 22000,
+                categoria: "conjuntos",
+                imagen: "Interior/I14.jpeg",
+                destacado: true
+            },
+            {
+                id: 4104, //Perfumeria
+                nombre: "Lacoste pure blanc",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P104.png"
+            },
+            {
+                id: 214,//Erotismo
+                nombre: "Potencializador masculino en pasta",
+                precio: 10000,
+                categoria: "pijamas",
+                imagen: "Erotismo/E14.jpeg",
+                destacado: true
+            },
+            {
+                id: 314, //Maquillaje
+                nombre: "Pestañina",
+                precio: 12500,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M14.jpeg"
+            },
+            {
+                id: 414, //Perfumeria
+                nombre: "Lacoste vert verde",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P14.png"
+            },
+           
+            //Producto #15//
+              {
+                id: 4105, //Perfumeria
+                nombre: "Carolina Herrera Bad Boy",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P105.png"
+            },
+            {
+                id: 015, //Interior
+                nombre: "Calzon",
+                precio: 10000,
+                categoria: "conjuntos",
+                imagen: "Interior/I15.jpeg",
+                destacado: true
+            },
+            {
+                id: 4115, //Perfumeria
+                nombre: "Chanel Allure Homme Sport",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P115.png"
+            },
+            {
+                id: 315, //Maquillaje
+                nombre: "Esponja de maquillaje",
+                precio: 3500,
+                categoria: "maquillaje",
+                imagen: "Maquillaje/M15.jpeg"
+            },
+            {
+                id: 415, //Perfumeria
+                nombre: "Bleu de Chanel",
+                precio: 100000,
+                categoria: "perfumeria",
+                imagen: "Perfumeria/P15.png"
+            }, 
+           
+         
+         
+        ];
+        
+        function filtrarPorCategoria(categoria) {
+            document.querySelectorAll('.btn-categoria').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.btn-categoria[data-categoria="${categoria}"]`).classList.add('active');
+            mostrarProductos(categoria);
+        }
+        
+        function mostrarProductos(categoria) {
+            const grid = document.getElementById('productos-grid');
+            grid.innerHTML = '';
+            
+            const productosFiltrados = categoria === 'todos' 
+                ? productos 
+                : productos.filter(item => item.categoria === categoria);
+            
+            productosFiltrados.forEach(producto => {
+                grid.innerHTML += `
+                    <div class="producto-card">
+                        <img src="${producto.imagen}" alt="${producto.nombre}">
+                        <div class="producto-info">
+                            <h3>${producto.nombre}</h3>
+                            <p class="price">$${Math.round(producto.precio).toLocaleString('es-CO')} </p>
+                            <a href="https://wa.me/573246164469?text=Hola,%20quiero%20comprar:%20${encodeURIComponent(producto.nombre)}%20-%20$${Math.round(producto.precio).toLocaleString('es-CO')}%20COP" class="btn">Añadir al carrito</a>
+                            
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        // Eventos para botones de categoría
+        document.querySelectorAll('.btn-categoria').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.btn-categoria').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                mostrarProductos(btn.dataset.categoria);
+            });
+        });
+
+        // ===== BUSCADOR =====
+        document.getElementById('search-toggle').addEventListener('click', function(e) {
+            e.preventDefault();
+            const searchContainer = document.getElementById('search-container');
+            searchContainer.style.display = searchContainer.style.display === 'block' ? 'none' : 'block';
+            if (searchContainer.style.display === 'block') {
+                document.getElementById('search-input').focus();
+            }
+        });
+
+        document.getElementById('search-input').addEventListener('input', function() {
+            const term = this.value.toLowerCase();
+            document.querySelectorAll('.producto-card').forEach(producto => {
+                const nombre = producto.querySelector('h3').textContent.toLowerCase();
+                producto.style.display = nombre.includes(term) ? 'block' : 'none';
+            });
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => mostrarProductos('todos'));
+    </script>
+</body>
+
+</html>
